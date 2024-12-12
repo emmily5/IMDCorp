@@ -12,12 +12,9 @@ public class Professor extends Pessoa implements Funcionario {
     private List<String> disciplinas;
 
     // Construtor parametrizado
-    public Professor(String nome, String cpf, LocalDate dataNascimento, Genero genero, 
-                     Endereco endereco, Long matricula, Double salario, 
-                     String departamento, Integer cargaHoraria, LocalDate dataIngresso,
-                     Nivel nivelProfessor, Formacao formacaoProfessor, List<String> disciplinas) {
-        super(nome, cpf, dataNascimento, genero, endereco, matricula, salario, 
-              departamento, cargaHoraria, dataIngresso);
+    public Professor
+    (String nome, Long matricula, LocalDate dataNascimento, Genero genero, Endereco endereco, Double salario, String departamento, Integer cargaHoraria, LocalDate dataIngresso,Nivel nivelProfessor, Formacao formacaoProfessor, List<String> disciplinas) {
+        super(nome, matricula, dataNascimento, genero, endereco, salario, departamento, cargaHoraria, dataIngresso);
         this.nivelProfessor = nivelProfessor;
         this.formacaoProfessor = formacaoProfessor;
         this.disciplinas = disciplinas;

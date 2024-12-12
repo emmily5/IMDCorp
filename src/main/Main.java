@@ -6,6 +6,7 @@ import model.*;
 //import service.Operacoes; OLHAR O PORQUÊ DO ERRO
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 //import java.util.ArrayList; OLHAR O PORQUÊ DO ERRO
 import java.util.List;
 import java.util.Scanner;
@@ -17,7 +18,7 @@ public class Main {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n=== Sistema de Gerenciamento de Funcionários ===");
+            System.out.println("\n --- Sistema de Gerenciamento de Funcionários ---");
             System.out.println("1. Adicionar Professor");
             System.out.println("2. Adicionar Técnico Administrativo");
             System.out.println("3. Listar Funcionários");
@@ -43,19 +44,22 @@ public class Main {
                     banco.getArrayPessoa().forEach(System.out::println);
                 }
                 case 4 -> {
-                    System.out.print("Informe o CPF do funcionário a ser removido: ");
-                    String cpf = scanner.nextLine();
+                    System.out.print("Informe a matrícula do funcionário a ser removido: ");
+                    long matricula = scanner.nextLong(); // Lê a matrícula como long
+                    scanner.nextLine(); // Limpa o buffer
+                
                     Pessoa funcionario = banco.getArrayPessoa().stream()
-                            .filter(p -> p.getCpf().equals(cpf))
+                            .filter(p -> p.getMatricula() == matricula) // Verifica pelo número de matrícula
                             .findFirst()
                             .orElse(null);
+                
                     if (funcionario != null) {
                         banco.removerFuncionario(funcionario);
                         System.out.println("Funcionário removido com sucesso!");
                     } else {
                         System.out.println("Funcionário não encontrado.");
                     }
-                }
+                }                
                 case 5 -> {
                     System.out.println("Encerrando o programa. Até mais!");
                     running = false;
@@ -80,9 +84,8 @@ public class Main {
         List<String> disciplinas = List.of(scanner.nextLine().split(",\\s*"));
 
         return new Professor(
-                pessoaBase.getNome(), pessoaBase.getCpf(), pessoaBase.getDataNascimento(),
-                pessoaBase.getGenero(), pessoaBase.getEndereco(), pessoaBase.getMatricula(),
-                pessoaBase.getSalario(), pessoaBase.getDepartamento(), pessoaBase.getCargaHoraria(),
+                pessoaBase.getNome(), pessoaBase.getMatricula(), pessoaBase.getDataNascimento(),
+                pessoaBase.getGenero(), pessoaBase.getEndereco(), pessoaBase.getSalario(), pessoaBase.getDepartamento(), pessoaBase.getCargaHoraria(),
                 pessoaBase.getDataIngresso(), nivel, formacao, disciplinas
         );
     }
@@ -104,8 +107,8 @@ public class Main {
         boolean funcaoGratificada = scanner.nextBoolean();
 
         return new TecnicoADM(
-                pessoaBase.getNome(), pessoaBase.getCpf(), pessoaBase.getDataNascimento(),
-                pessoaBase.getGenero(), pessoaBase.getEndereco(), pessoaBase.getMatricula(),
+                pessoaBase.getNome(), pessoaBase.getMatricula(), pessoaBase.getDataNascimento(),
+                pessoaBase.getGenero(), pessoaBase.getEndereco(),
                 pessoaBase.getSalario(), pessoaBase.getDepartamento(), pessoaBase.getCargaHoraria(),
                 pessoaBase.getDataIngresso(), nivel, formacao, insalubridade, funcaoGratificada
         );
@@ -115,11 +118,11 @@ public class Main {
         System.out.print("Informe o nome: ");
         String nome = scanner.nextLine();
 
-        System.out.print("Informe o CPF: ");
-        String cpf = scanner.nextLine();
+        //System.out.print("Informe o cpf: ");
+        //String cpf = scanner.nextLine();
 
         System.out.print("Informe a data de nascimento (DD-MM-AAAA): ");
-        LocalDate dataNascimento = LocalDate.parse(scanner.nextLine());
+        LocalDate dataNascimento = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
         System.out.print("Informe o gênero (1: Masculino, 2: Feminino, 3: Outro): ");
         Genero genero = Genero.values()[scanner.nextInt() - 1];
@@ -161,6 +164,6 @@ public class Main {
         System.out.print("Informe a data de ingresso (AAAA-MM-DD): ");
         LocalDate dataIngresso = LocalDate.parse(scanner.nextLine());
 
-        return new Pessoa(nome, cpf, dataNascimento, genero, endereco, matricula, salario, departamento, cargaHoraria, dataIngresso) {};
+        return new Pessoa(nome, matricula, dataNascimento, genero, endereco, salario, departamento, cargaHoraria, dataIngresso) {};
     }
 }

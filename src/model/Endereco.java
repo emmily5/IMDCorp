@@ -17,7 +17,7 @@ public class Endereco {
         this.cep = cep;
     }
 
-    // Getters
+    // Métodos Getters
     public String getRua() {
         return rua;
     }
@@ -38,7 +38,7 @@ public class Endereco {
         return cep;
     }
 
-    // Setters
+    // Métodos Setters
     public void setRua(String rua) {
         this.rua = rua;
     }

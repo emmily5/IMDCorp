@@ -6,26 +6,23 @@ import java.io.Serializable;
 
 public abstract class Pessoa implements Serializable {
     private String nome;
-    private String cpf;
+    private Long matricula;
     private LocalDate dataNascimento;
     private Genero genero;
     private Endereco endereco;
-    private Long matricula;
     private Double salario;
     private String departamento;
     private Integer cargaHoraria;
     private LocalDate dataIngresso;
 
     // Construtor parametrizado
-    public Pessoa(String nome, String cpf, LocalDate dataNascimento, Genero genero, 
-                  Endereco endereco, Long matricula, Double salario, 
-                  String departamento, Integer cargaHoraria, LocalDate dataIngresso) {
+    public Pessoa
+    (String nome, Long matricula, LocalDate dataNascimento, Genero genero, Endereco endereco, Double salario, String departamento, Integer cargaHoraria, LocalDate dataIngresso) {
         this.nome = nome;
-        this.cpf = cpf;
+        this.matricula = matricula;
         this.dataNascimento = dataNascimento;
         this.genero = genero;
         this.endereco = endereco;
-        this.matricula = matricula;
         this.salario = salario;
         this.departamento = departamento;
         this.cargaHoraria = cargaHoraria;
@@ -41,12 +38,12 @@ public abstract class Pessoa implements Serializable {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
+    public Long getMatricula() {
+        return this.matricula;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setMatricula(Long matricula) {
+        this.matricula = matricula;
     }
 
     public LocalDate getDataNascimento() {
@@ -72,15 +69,6 @@ public abstract class Pessoa implements Serializable {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-
-    public Long getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(Long matricula) {
-        this.matricula = matricula;
-    }
-
     public Double getSalario() {
         return salario;
     }
@@ -117,7 +105,6 @@ public abstract class Pessoa implements Serializable {
     public String toString() {
         return "Pessoa{" +
                 "nome='" + nome + '\'' +
-                ", cpf='" + cpf + '\'' +
                 ", matricula=" + matricula +
                 ", departamento='" + departamento + '\'' +
                 '}';

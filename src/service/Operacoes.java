@@ -61,7 +61,7 @@ public class Operacoes {
         ArrayList<Pessoa> funcionarios = bancoDAO.getArrayPessoa();
         
         boolean removido = funcionarios.removeIf(
-            f -> f instanceof Professor && f.getMatricula().equals(matricula)
+            f -> f instanceof Professor && f.getMatricula() == matricula
         );
         
         if (removido) {
@@ -76,7 +76,7 @@ public class Operacoes {
         ArrayList<Pessoa> funcionarios = bancoDAO.getArrayPessoa();
         
         boolean removido = funcionarios.removeIf(
-            f -> f instanceof TecnicoADM && f.getMatricula().equals(matricula)
+            f -> f instanceof TecnicoADM && f.getMatricula() == matricula
         );
         
         if (removido) {
@@ -91,7 +91,7 @@ public class Operacoes {
         ArrayList<Pessoa> funcionarios = bancoDAO.getArrayPessoa();
         
         return funcionarios.stream()
-            .filter(f -> f instanceof Professor && f.getMatricula().equals(matricula))
+            .filter(f -> f instanceof Professor && f.getMatricula() == matricula)
             .map(f -> (Professor) f)
             .findFirst()
             .orElse(null);
@@ -101,7 +101,7 @@ public class Operacoes {
         ArrayList<Pessoa> funcionarios = bancoDAO.getArrayPessoa();
         
         return funcionarios.stream()
-            .filter(f -> f instanceof TecnicoADM && f.getMatricula().equals(matricula))
+            .filter(f -> f instanceof TecnicoADM && f.getMatricula() == matricula)
             .map(f -> (TecnicoADM) f)
             .findFirst()
             .orElse(null);
