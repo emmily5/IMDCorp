@@ -6,15 +6,15 @@ import enums.Genero;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Professor extends Pessoa implements Funcionario {
+public class Professor extends Pessoa {
     private Nivel nivelProfessor;
     private Formacao formacaoProfessor;
     private List<String> disciplinas;
 
     // Construtor parametrizado
     public Professor
-    (String nome, Long matricula, LocalDate dataNascimento, Genero genero, Endereco endereco, Double salario, String departamento, Integer cargaHoraria, LocalDate dataIngresso,Nivel nivelProfessor, Formacao formacaoProfessor, List<String> disciplinas) {
-        super(nome, matricula, dataNascimento, genero, endereco, salario, departamento, cargaHoraria, dataIngresso);
+    (String nome, String cpf, Long matricula, LocalDate dataNascimento, Genero genero, Endereco endereco, Double salario, String departamento, Integer cargaHoraria, LocalDate dataIngresso,Nivel nivelProfessor, Formacao formacaoProfessor, List<String> disciplinas) {
+        super(nome, cpf, matricula, dataNascimento, genero, endereco, salario, departamento, cargaHoraria, dataIngresso);
         this.nivelProfessor = nivelProfessor;
         this.formacaoProfessor = formacaoProfessor;
         this.disciplinas = disciplinas;

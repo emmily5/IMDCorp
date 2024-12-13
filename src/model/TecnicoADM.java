@@ -5,7 +5,7 @@ import enums.Formacao;
 import enums.Genero;
 import java.time.LocalDate;
 
-public class TecnicoADM extends Pessoa implements Funcionario {
+public class TecnicoADM extends Pessoa {
     private Nivel nivelTecnico;
     private Formacao formacaoTecnico;
     private Boolean insalubridade;
@@ -13,8 +13,8 @@ public class TecnicoADM extends Pessoa implements Funcionario {
 
     // Construtor parametrizado
     public TecnicoADM
-    (String nome, Long matricula, LocalDate dataNascimento, Genero genero, Endereco endereco, Double salario, String departamento, Integer cargaHoraria, LocalDate dataIngresso, Nivel nivelTecnico, Formacao formacaoTecnico, Boolean insalubridade, Boolean funcaoGratificada) {
-        super(nome, matricula, dataNascimento, genero, endereco, salario, departamento, cargaHoraria, dataIngresso);
+    (String nome, String cpf, Long matricula, LocalDate dataNascimento, Genero genero, Endereco endereco, Double salario, String departamento, Integer cargaHoraria, LocalDate dataIngresso, Nivel nivelTecnico, Formacao formacaoTecnico, Boolean insalubridade, Boolean funcaoGratificada) {
+        super(nome, cpf, matricula, dataNascimento, genero, endereco, salario, departamento, cargaHoraria, dataIngresso);
         this.nivelTecnico = nivelTecnico;
         this.formacaoTecnico = formacaoTecnico;
         this.insalubridade = insalubridade;

@@ -4,8 +4,12 @@ import enums.Genero;
 import java.time.LocalDate;
 import java.io.Serializable;
 
-public abstract class Pessoa implements Serializable {
+public abstract class Pessoa implements Serializable, Funcionario {
+
+    private static final long serialVersionUID = 1L;
+
     private String nome;
+    private String cpf;
     private Long matricula;
     private LocalDate dataNascimento;
     private Genero genero;
@@ -17,8 +21,9 @@ public abstract class Pessoa implements Serializable {
 
     // Construtor parametrizado
     public Pessoa
-    (String nome, Long matricula, LocalDate dataNascimento, Genero genero, Endereco endereco, Double salario, String departamento, Integer cargaHoraria, LocalDate dataIngresso) {
+    (String nome, String cpf, Long matricula, LocalDate dataNascimento, Genero genero, Endereco endereco, Double salario, String departamento, Integer cargaHoraria, LocalDate dataIngresso) {
         this.nome = nome;
+        this.cpf = cpf;
         this.matricula = matricula;
         this.dataNascimento = dataNascimento;
         this.genero = genero;
@@ -36,6 +41,14 @@ public abstract class Pessoa implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Long getMatricula() {
@@ -99,6 +112,11 @@ public abstract class Pessoa implements Serializable {
 
     public void setDataIngresso(LocalDate dataIngresso) {
         this.dataIngresso = dataIngresso;
+    }
+
+    @Override
+    public Double calculaSalario() {
+        return salario; 
     }
 
     @Override

@@ -84,7 +84,7 @@ public class Main {
         List<String> disciplinas = List.of(scanner.nextLine().split(",\\s*"));
 
         return new Professor(
-                pessoaBase.getNome(), pessoaBase.getMatricula(), pessoaBase.getDataNascimento(),
+                pessoaBase.getNome(), pessoaBase.getCpf(), pessoaBase.getMatricula(), pessoaBase.getDataNascimento(),
                 pessoaBase.getGenero(), pessoaBase.getEndereco(), pessoaBase.getSalario(), pessoaBase.getDepartamento(), pessoaBase.getCargaHoraria(),
                 pessoaBase.getDataIngresso(), nivel, formacao, disciplinas
         );
@@ -107,7 +107,7 @@ public class Main {
         boolean funcaoGratificada = scanner.nextBoolean();
 
         return new TecnicoADM(
-                pessoaBase.getNome(), pessoaBase.getMatricula(), pessoaBase.getDataNascimento(),
+                pessoaBase.getNome(), pessoaBase.getCpf(),pessoaBase.getMatricula(), pessoaBase.getDataNascimento(),
                 pessoaBase.getGenero(), pessoaBase.getEndereco(),
                 pessoaBase.getSalario(), pessoaBase.getDepartamento(), pessoaBase.getCargaHoraria(),
                 pessoaBase.getDataIngresso(), nivel, formacao, insalubridade, funcaoGratificada
@@ -118,8 +118,8 @@ public class Main {
         System.out.print("Informe o nome: ");
         String nome = scanner.nextLine();
 
-        //System.out.print("Informe o cpf: ");
-        //String cpf = scanner.nextLine();
+        System.out.print("Informe o cpf: ");
+        String cpf = scanner.nextLine();
 
         System.out.print("Informe a data de nascimento (DD-MM-AAAA): ");
         LocalDate dataNascimento = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
@@ -164,6 +164,6 @@ public class Main {
         System.out.print("Informe a data de ingresso (AAAA-MM-DD): ");
         LocalDate dataIngresso = LocalDate.parse(scanner.nextLine());
 
-        return new Pessoa(nome, matricula, dataNascimento, genero, endereco, salario, departamento, cargaHoraria, dataIngresso) {};
+        return new Pessoa(nome, cpf, matricula, dataNascimento, genero, endereco, salario, departamento, cargaHoraria, dataIngresso) {};
     }
 }
