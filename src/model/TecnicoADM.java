@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class TecnicoADM extends Pessoa {
     private Nivel nivelTecnico;
-    private Formacao formacaoTecnico;
+    private Formacao formacaoTecnico;;
     private Boolean insalubridade;
     private Boolean funcaoGratificada;
 
@@ -54,7 +54,7 @@ public class TecnicoADM extends Pessoa {
         this.funcaoGratificada = funcaoGratificada;
     }
 
-    // Implementação do método calculaSalario conforme especificado
+    // Método calcular salario 
     @Override
     public Double calculaSalario() {
         double salarioBase = 2500.0;
@@ -66,8 +66,21 @@ public class TecnicoADM extends Pessoa {
         }
 
         // Adicional por formação
-        double adicionalFormacao = salarioBase * formacaoTecnico.getAdicional();
-
+        double adicionalFormacao = 0.0;
+    switch (formacaoTecnico) {
+        case ESPECIALIZACAO:
+            adicionalFormacao = salarioBase * 0.25;
+            break;
+        case MESTRADO:
+            adicionalFormacao = salarioBase * 0.50;
+            break;
+        case DOUTORADO:
+            adicionalFormacao = salarioBase * 0.75;
+            break;
+        default:
+            adicionalFormacao = 0.0; // Caso padrão: sem adicional
+            break;
+    }
         // Adicional de insalubridade
         double adicionalInsalubridade = insalubridade ? salarioBase * 0.5 : 0;
 

@@ -45,7 +45,7 @@ public class Professor extends Pessoa {
         this.disciplinas = disciplinas;
     }
 
-    // Implementação do método calculaSalario conforme especificado
+    // Método para calcular salário
     @Override
     public Double calculaSalario() {
         double salarioBase = 4000.0;
@@ -57,9 +57,22 @@ public class Professor extends Pessoa {
         }
 
         // Adicional por formação
-        double adicionalFormacao = salarioBase * formacaoProfessor.getAdicional();
-
-        return salarioNivel + adicionalFormacao;
+        double adicionalFormacao = 0.0;
+    switch (formacaoProfessor) {
+        case ESPECIALIZACAO:
+            adicionalFormacao = salarioBase * 0.25;
+            break;
+        case MESTRADO:
+            adicionalFormacao = salarioBase * 0.50;
+            break;
+        case DOUTORADO:
+            adicionalFormacao = salarioBase * 0.75;
+            break;
+        default:
+            adicionalFormacao = 0.0; // Caso padrão: sem adicional
+            break;
+    }
+    return salarioNivel + adicionalFormacao;
     }
 
     @Override

@@ -3,28 +3,32 @@ package main;
 import dao.BancoDAO;
 import enums.*;
 import model.*;
-//import service.Operacoes; OLHAR O PORQUÊ DO ERRO
+import service.Operacoes;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-//import java.util.ArrayList; OLHAR O PORQUÊ DO ERRO
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         BancoDAO banco = BancoDAO.getInstance();
+        Operacoes operacoes = new Operacoes();
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
         while (running) {
-            System.out.println("\n --- Sistema de Gerenciamento de Funcionários ---");
+            System.out.println("\n=======================================");
+            System.out.println("       Sistema de Gerenciamento");
+            System.out.println("           de Funcionários");
+            System.out.println("=======================================");
             System.out.println("1. Adicionar Professor");
             System.out.println("2. Adicionar Técnico Administrativo");
             System.out.println("3. Listar Funcionários");
             System.out.println("4. Remover Funcionário");
-            System.out.println("5. Sair");
-            System.out.print("Escolha uma opção: ");
+            System.out.println("5. Calcular Salário");
+            System.out.println("6. Encerrar Sessão");
+            System.out.println("Escolha uma opção: ");
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpa o buffer
 
@@ -59,8 +63,29 @@ public class Main {
                     } else {
                         System.out.println("Funcionário não encontrado.");
                     }
-                }                
+                }        
                 case 5 -> {
+                    System.out.print("Informe a matrícula do funcionário para calcular o salário: ");
+                    long matricula = scanner.nextLong();  // Lê a matrícula do funcionário
+                    scanner.nextLine(); // Limpa o buffer
+
+                    // Busca o funcionário no banco e calcula o salário
+                    Pessoa funcionario = banco.getArrayPessoa().stream()
+                            .filter(p -> p.getMatricula() == matricula)
+                            .findFirst()
+                            .orElse(null);
+
+                    if (funcionario != null) {
+                        if (funcionario instanceof Professor) {
+                            operacoes.calcularSalarioProfessor((Professor) funcionario);  // Calcula o salário do professor
+                        } else if (funcionario instanceof TecnicoADM) {
+                            operacoes.calcularSalarioTecnicoADM((TecnicoADM) funcionario);  // Calcula o salário do técnico
+                        }
+                    } else {
+                        System.out.println("Funcionário não encontrado.");
+                    }
+                }
+                case 6 -> {
                     System.out.println("Encerrando o programa. Até mais!");
                     running = false;
                 }
